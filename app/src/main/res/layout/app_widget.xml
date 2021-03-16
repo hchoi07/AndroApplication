@@ -1,0 +1,27 @@
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/widget_margin"
+    android:theme="@style/ThemeOverlay.TestApplication.AppWidgetContainer">
+
+    <Button
+        android:id="@+id/launch_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/tree" />
+
+    <Button
+        android:id="@+id/open_image_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/image" />
+    <Button
+        android:id="@+id/open_video_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/video" />
+
+</GridLayout>
