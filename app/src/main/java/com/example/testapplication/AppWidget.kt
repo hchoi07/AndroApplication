@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.widget.RemoteViews
 import androidx.core.os.bundleOf
 import androidx.navigation.NavDeepLink
@@ -44,6 +45,8 @@ class AppWidget : AppWidgetProvider() {
                 .setDestination(R.id.videoFragment)
                 .createPendingIntent()
 
+
+
             val views: RemoteViews = RemoteViews(
                 context.packageName,
                 R.layout.app_widget
@@ -51,12 +54,15 @@ class AppWidget : AppWidgetProvider() {
                 setOnClickPendingIntent(R.id.launch_btn, pendingIntent)
                 setOnClickPendingIntent(R.id.open_image_btn, pendingIntent2)
                 setOnClickPendingIntent(R.id.open_video_btn, pendingIntent3)
+//                setOnClickPendingIntent(R.id.other_app_btn, pendingIntent4)
+
             }
 
             // Tell the AppWidgetManager to perform an update on the current app widget
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
     }
+
 
     override fun onReceive(context: Context?, intent: Intent?) {
         super.onReceive(context, intent)

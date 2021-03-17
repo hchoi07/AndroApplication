@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,7 @@ class MainFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.video_btn).setOnClickListener(this)
         view.findViewById<Button>(R.id.otherApp_btn).setOnClickListener(this)
 
+
     }
 
     override fun onClick(v: View?) {
@@ -46,8 +48,9 @@ class MainFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    public fun openMap(){
-        val gmmIntentUri = Uri.parse("geo:47.61787174268605, -122.15306954678934")
+    private fun openMap(){
+        Log.i("logging", "Clicked map button")
+        val gmmIntentUri = Uri.parse("https://www.google.com/maps/place/Bellevue+Botanical+Garden/@47.609198,-122.1809505,17z/data=!3m1!4b1!4m5!3m4!1s0x54906c66ffcf2bb7:0xf3a991ee744c3f03!8m2!3d47.6091944!4d-122.1787565")
 
         // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
@@ -63,7 +66,7 @@ class MainFragment : Fragment(), View.OnClickListener {
 
     }
 
-    public fun openCamera() {
+    private fun openCamera() {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         try {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)

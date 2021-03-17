@@ -1,6 +1,7 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/button_gradient"
     android:padding="@dimen/widget_margin"
     android:theme="@style/ThemeOverlay.TestApplication.AppWidgetContainer">
 
@@ -8,20 +9,26 @@
         android:id="@+id/launch_btn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_weight="1"
+        android:layout_margin="7dp"
         android:background="@drawable/tree" />
 
     <Button
         android:id="@+id/open_image_btn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_weight="1"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:layout_margin="7dp"
         android:background="@drawable/image" />
+
     <Button
         android:id="@+id/open_video_btn"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_weight="1"
+        android:layout_row="0"
+        android:layout_column="2"
+        android:layout_margin="7dp"
         android:background="@drawable/video" />
+
 
 </GridLayout>
