@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_mainFragment_to_videoFragment"
             app:destination="@id/videoFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_apiFragment"
+            app:destination="@id/apiFragment" />
 
     </fragment>
 
@@ -32,4 +35,12 @@
         android:name="com.example.testapplication.videoFragment"
         android:label="fragment_video"
         tools:layout="@layout/fragment_video" />
+    <fragment
+        android:id="@+id/apiFragment"
+        android:name="com.example.testapplication.apiFragment"
+        android:label="apiFragment" >
+        <action
+            android:id="@+id/action_apiFragment_self"
+            app:destination="@id/apiFragment" />
+    </fragment>
 </navigation>

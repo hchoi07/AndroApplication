@@ -42,7 +42,7 @@ class videoFragment : Fragment() {
 
         //------------this is me trying with mediasource----
 
-        Log.d("TAG", "DK### Context: $context")
+        Log.d("logging", "DK### Context: $context")
 //
 //        context?.let {
 //            simpleExoPlayer = SimpleExoPlayer.Builder(it).build()

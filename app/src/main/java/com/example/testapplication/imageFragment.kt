@@ -25,7 +25,10 @@ class imageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val imageView = view.findViewById<ImageView>(R.id.imageView)
+
+
         val media = "android.resource://com.example.testapplication/drawable/trees"
         Glide.with(this).load(media).into(imageView)
     }
+
 }

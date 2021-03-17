@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainFragment">
 
     <Button
@@ -12,12 +12,10 @@
         android:layout_height="46dp"
         android:backgroundTint="#D0EDFA"
         android:text="Image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintBottom_toTopOf="@+id/video_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/video_btn"
@@ -25,12 +23,10 @@
         android:layout_height="46dp"
         android:backgroundTint="#D0EDFA"
         android:text="Video"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/otherApp_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_btn"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintTop_toBottomOf="@+id/image_btn" />
 
     <Button
         android:id="@+id/otherApp_btn"
@@ -38,11 +34,32 @@
         android:layout_height="46dp"
         android:backgroundTint="#D0EDFA"
         android:text="Google Maps"
+        app:layout_constraintBottom_toTopOf="@+id/api_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/video_btn" />
+
+    <Button
+        android:id="@+id/api_btn"
+        android:layout_width="200dp"
+        android:layout_height="46dp"
+        android:backgroundTint="#D0EDFA"
+        android:text="Cat API"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/otherApp_btn" />
+
+    <Button
+        android:id="@+id/recyclerView_btn"
+        android:layout_width="200dp"
+        android:layout_height="46dp"
+        android:backgroundTint="#D0EDFA"
+        android:text="Recycler View"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video_btn"
-        app:layout_constraintVertical_bias="0.184" />
+        app:layout_constraintTop_toBottomOf="@+id/api_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
