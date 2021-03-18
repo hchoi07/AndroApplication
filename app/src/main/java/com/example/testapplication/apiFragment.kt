@@ -27,7 +27,7 @@ class apiFragment : Fragment(), View.OnClickListener {
 
     var requestQueue: RequestQueue? = null
     val url: String = "https://aws.random.cat/meow"
-    var navController: NavController? = null
+//    var navController: NavController? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,21 +41,30 @@ class apiFragment : Fragment(), View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_api, container, false)
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
+//        navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.refresh_btn).setOnClickListener(this)
-        val imageView = view.findViewById<ImageView>(R.id.apiView)
+        makeRequest()
+
+    }
+
+    override fun onClick(v: View?) {
+//        navController!!.navigate(R.id.action_apiFragment_self)
+        makeRequest()
+    }
+
+    private fun makeRequest() {
+        val imageView = view?.findViewById<ImageView>(R.id.apiView)
+
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
             Response.Listener { response ->
                 try {
                     val imageResponse = response.getString("file")
                     Log.d("logging", "random cat's response is: $imageResponse")
-                    Glide.with(this).load(imageResponse).into(imageView)
+                    Glide.with(this).load(imageResponse).into(imageView!!)
 
 
                 } catch (e: JSONException){
@@ -67,11 +76,6 @@ class apiFragment : Fragment(), View.OnClickListener {
             }
         )
         requestQueue?.add(jsonObjectRequest)
-
-    }
-
-    override fun onClick(v: View?) {
-        navController!!.navigate(R.id.action_apiFragment_self)
     }
 
 

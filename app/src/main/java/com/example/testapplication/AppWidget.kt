@@ -32,18 +32,18 @@ class AppWidget : AppWidgetProvider() {
                 }
 
             // this launches the image fragment
-            val pendingIntent2 = NavDeepLinkBuilder(context)
-                .setComponentName(MainActivity::class.java)
-                .setGraph(R.navigation.nav_graph)
-                .setDestination(R.id.imageFragment)
-                .createPendingIntent()
+//            val pendingIntent2 = NavDeepLinkBuilder(context)
+//                .setComponentName(MainActivity::class.java)
+//                .setGraph(R.navigation.nav_graph)
+//                .setDestination(R.id.imageFragment)
+//                .createPendingIntent()
 
             // this launches the video fragment
-            val pendingIntent3 = NavDeepLinkBuilder(context)
-                .setComponentName(MainActivity::class.java)
-                .setGraph(R.navigation.nav_graph)
-                .setDestination(R.id.videoFragment)
-                .createPendingIntent()
+//            val pendingIntent3 = NavDeepLinkBuilder(context)
+//                .setComponentName(MainActivity::class.java)
+//                .setGraph(R.navigation.nav_graph)
+//                .setDestination(R.id.videoFragment)
+//                .createPendingIntent()
 
 
 
@@ -52,8 +52,8 @@ class AppWidget : AppWidgetProvider() {
                 R.layout.app_widget
             ).apply {
                 setOnClickPendingIntent(R.id.launch_btn, pendingIntent)
-                setOnClickPendingIntent(R.id.open_image_btn, pendingIntent2)
-                setOnClickPendingIntent(R.id.open_video_btn, pendingIntent3)
+//                setOnClickPendingIntent(R.id.open_image_btn, pendingIntent2)
+//                setOnClickPendingIntent(R.id.open_video_btn, pendingIntent3)
 //                setOnClickPendingIntent(R.id.other_app_btn, pendingIntent4)
 
             }

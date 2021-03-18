@@ -38,9 +38,5 @@
     <fragment
         android:id="@+id/apiFragment"
         android:name="com.example.testapplication.apiFragment"
-        android:label="apiFragment" >
-        <action
-            android:id="@+id/action_apiFragment_self"
-            app:destination="@id/apiFragment" />
-    </fragment>
+        android:label="apiFragment" />
 </navigation>
