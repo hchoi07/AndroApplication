@@ -21,6 +21,12 @@
         <action
             android:id="@+id/action_mainFragment_to_apiFragment"
             app:destination="@id/apiFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_recycler"
+            app:destination="@id/recycler" />
+        <action
+            android:id="@+id/action_mainFragment_to_recycler_test"
+            app:destination="@id/recycler_test" />
 
     </fragment>
 
@@ -39,4 +45,14 @@
         android:id="@+id/apiFragment"
         android:name="com.example.testapplication.apiFragment"
         android:label="apiFragment" />
+    <fragment
+        android:id="@+id/recycler"
+        android:name="com.example.testapplication.recycler"
+        android:label="fragment_recycler"
+        tools:layout="@layout/fragment_recycler" />
+    <fragment
+        android:id="@+id/recycler_test"
+        android:name="com.example.testapplication.RecyclerTest"
+        android:label="fragment_recycler_test"
+        tools:layout="@layout/fragment_recycler_test" />
 </navigation>

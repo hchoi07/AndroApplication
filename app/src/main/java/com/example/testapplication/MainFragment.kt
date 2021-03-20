@@ -36,6 +36,9 @@ class MainFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.video_btn).setOnClickListener(this)
         view.findViewById<Button>(R.id.otherApp_btn).setOnClickListener(this)
         view.findViewById<Button>(R.id.api_btn).setOnClickListener(this)
+        view.findViewById<Button>(R.id.recyclerView_btn).setOnClickListener(this)
+        view.findViewById<Button>(R.id.recyclerTest_btn).setOnClickListener(this)
+
 
 
     }
@@ -47,6 +50,8 @@ class MainFragment : Fragment(), View.OnClickListener {
             //R.id.otherApp_btn -> navController!!.navigate(R.id.action_mainFragment_to_openMap)
             R.id.otherApp_btn -> openMap()
             R.id.api_btn -> navController!!.navigate(R.id.action_mainFragment_to_apiFragment)
+            R.id.recyclerView_btn -> navController!!.navigate(R.id.action_mainFragment_to_recycler)
+            R.id.recyclerTest_btn -> navController!!.navigate(R.id.action_mainFragment_to_recycler_test)
         }
     }
 
