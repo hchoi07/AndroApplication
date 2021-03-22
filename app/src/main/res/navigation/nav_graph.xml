@@ -47,7 +47,7 @@
         android:label="apiFragment" />
     <fragment
         android:id="@+id/recycler"
-        android:name="com.example.testapplication.recycler"
+        android:name="com.example.testapplication.Recycler"
         android:label="fragment_recycler"
         tools:layout="@layout/fragment_recycler" />
     <fragment

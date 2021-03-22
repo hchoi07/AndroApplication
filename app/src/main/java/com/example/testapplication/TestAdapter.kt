@@ -1,6 +1,7 @@
 package com.example.testapplication
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,21 +36,23 @@ class TestAdapter : RecyclerView.Adapter<TestAdapter.ViewHolder>() {
             itemColors = itemView.findViewById(R.id.kategori)
             itemChars = itemView.findViewById(R.id.isiPertanyaan)
 
-            itemView.setOnClickListener {
-                var position: Int = getAdapterPosition()
-                val context = itemView.context
-                val intent = Intent(context, RecyclerTest::class.java).apply {
-                    putExtra("NUMBER", position)
-                    putExtra("CODE", itemCode.text)
-                    putExtra("CATEGORY", itemColors.text)
-                    putExtra("CONTENT", itemChars.text)
-                }
-                context.startActivity(intent)
-            }
+//            itemView.setOnClickListener {
+//                var position: Int = getAdapterPosition()
+//                val context = itemView.context
+//                val intent = Intent(context, RecyclerTest::class.java).apply {
+//                    putExtra("NUMBER", position)
+//                    putExtra("CODE", itemCode.text)
+//                    putExtra("CATEGORY", itemColors.text)
+//                    putExtra("CONTENT", itemChars.text)
+//                }
+//                context.startActivity(intent)
+//            }
         }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
+        Log.d("logging", "entering onCreateViewHolder on TEST")
+
         val v = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.list_layout, viewGroup, false)
         return ViewHolder(v)
