@@ -13,20 +13,21 @@
 
         <action
             android:id="@+id/action_mainFragment_to_imageFragment"
-            app:destination="@id/imageFragment" />
+            app:destination="@id/imageFragment"
+            app:enterAnim="@anim/slide_in" />
 
         <action
             android:id="@+id/action_mainFragment_to_videoFragment"
-            app:destination="@id/videoFragment" />
+            app:destination="@id/videoFragment"
+            app:enterAnim="@anim/slide_in" />
         <action
             android:id="@+id/action_mainFragment_to_apiFragment"
-            app:destination="@id/apiFragment" />
+            app:destination="@id/apiFragment"
+            app:enterAnim="@anim/slide_in" />
         <action
             android:id="@+id/action_mainFragment_to_recycler"
-            app:destination="@id/recycler" />
-        <action
-            android:id="@+id/action_mainFragment_to_recycler_test"
-            app:destination="@id/recycler_test" />
+            app:destination="@id/recycler"
+            app:enterAnim="@anim/slide_in" />
 
     </fragment>
 
@@ -50,9 +51,4 @@
         android:name="com.example.testapplication.Recycler"
         android:label="fragment_recycler"
         tools:layout="@layout/fragment_recycler" />
-    <fragment
-        android:id="@+id/recycler_test"
-        android:name="com.example.testapplication.RecyclerTest"
-        android:label="fragment_recycler_test"
-        tools:layout="@layout/fragment_recycler_test" />
 </navigation>

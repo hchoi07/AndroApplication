@@ -1,24 +1,32 @@
 package com.example.testapplication
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import java.io.File
+import java.io.FileNotFoundException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainFragment : Fragment(), View.OnClickListener {
 
     val REQUEST_IMAGE_CAPTURE = 1
     var navController: NavController? = null
+    lateinit var currentPhotoPath: String
+    private lateinit var photoFile: File
+    private val FILE_NAME = "photo.jpg"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +59,7 @@ class MainFragment : Fragment(), View.OnClickListener {
             R.id.otherApp_btn -> openMap()
             R.id.api_btn -> navController!!.navigate(R.id.action_mainFragment_to_apiFragment)
             R.id.recyclerView_btn -> navController!!.navigate(R.id.action_mainFragment_to_recycler)
+            R.id.camera_btn -> dispatchTakePictureIntent()
         }
     }
 
@@ -72,12 +81,63 @@ class MainFragment : Fragment(), View.OnClickListener {
 
     }
 
-    private fun openCamera() {
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+    private fun dispatchTakePictureIntent() {
+//        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        val takePictureIntent = Intent("android.media.action.IMAGE_CAPTURE").also {
+            photoFile = createImageFile()
+        }
+       photoFile?.also {
+           val photoURI = context?.let { FileProvider.getUriForFile(it, "com.example.testapplication.fileprovider", photoFile) }
+           takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+           startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+       }
+        Log.d("logging", "photoFile is : $photoFile")
+        Log.d("logging", "takePictureIntent is : $takePictureIntent")
+
+    }
+
+    private fun createImageFile(): File {
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+
+        val storageDirectory = context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDirectory).apply {
+            currentPhotoPath = absolutePath
+        }
+    }
+
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+                Log.d("logging", "intent is : $data")
+
+
+//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+//            val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
+//            val photoIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+//            val f = File(photoFile.absolutePath)
+//            val contentUri = Uri.fromFile(f)
+//            photoIntent.data = contentUri
+//            context?.sendBroadcast(photoIntent)
+            // to render this "takenImage" into a specific image view:
+            // imageview.setImageBitmap(takenImage)
+//        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun galleryAddPic() {
+        val f = File(currentPhotoPath) //set your picture's path
         try {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-        } catch (e: ActivityNotFoundException) {
-            // display error state to the user
+            MediaStore.Images.Media.insertImage(
+                activity?.contentResolver,
+                f.absolutePath, f.name, null
+            )
+            activity?.sendBroadcast(
+                Intent(
+                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)
+                )
+            )
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
         }
     }
 

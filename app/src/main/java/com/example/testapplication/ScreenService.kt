@@ -22,7 +22,6 @@ class ScreenService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flag: Int, startIs: Int): Int {
-
         // Detect screen off
         val filter = IntentFilter(Intent.ACTION_SCREEN_ON)
         filter.addAction(Intent.ACTION_SCREEN_OFF)
