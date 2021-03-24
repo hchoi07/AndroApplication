@@ -1,12 +1,14 @@
-package com.example.testapplication
+package com.example.testapplication.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testapplication.Button
+import com.example.testapplication.R
+import com.example.testapplication.RecyclerItems
 
 class ButtonAdapter(private val button_list: Button): RecyclerView.Adapter<ButtonAdapter.ViewHolder>() {
 //    init {

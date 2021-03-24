@@ -1,31 +1,21 @@
-package com.example.testapplication
+package com.example.testapplication.fragments
 
-import android.content.Context
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.ExoPlayerFactory
+import com.example.testapplication.R
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.ui.PlayerView
-import com.google.android.exoplayer2.upstream.DataSource
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.util.Util
 
-class videoFragment : Fragment() {
+class VideoFragment : Fragment() {
 
-//    val packageName = BuildConfig.APPLICATION_ID
     val packageName = activity?.packageName
     private lateinit var simpleExoPlayer: SimpleExoPlayer
-//    private lateinit var mediaDataSourceFactory: DataSource.Factory
     private lateinit var videoView: PlayerView
 
 
@@ -41,8 +31,6 @@ class videoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //------------this is me trying with mediasource----
-
-        Log.d("logging", "DK### Context: $context")
 //
 //        context?.let {
 //            simpleExoPlayer = SimpleExoPlayer.Builder(it).build()
@@ -65,15 +53,11 @@ class videoFragment : Fragment() {
 //        videoView.requestFocus()
 
 
-
-
-
 //        ------------this is me trying with mediaitem----
 
         videoView = view.findViewById<PlayerView>(R.id.player_view)
 
         val mediaItem = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/leaves"))
-//        val mediaItem = MediaItem.Builder().setUri(Uri.parse("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4")).build()
 
         Log.i("log", "media source is: " + mediaItem)
         context?.let {

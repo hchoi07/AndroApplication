@@ -1,4 +1,4 @@
-package com.example.testapplication
+package com.example.testapplication.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.testapplication.R
+import com.example.testapplication.adapters.TestAdapter
 import kotlinx.android.synthetic.main.fragment_recycler_test.*
 
 

@@ -1,5 +1,6 @@
-package com.example.testapplication
+package com.example.testapplication.fragments
 
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -14,6 +15,8 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.testapplication.BuildConfig
+import com.example.testapplication.R
 import java.io.File
 import java.io.FileNotFoundException
 import java.text.SimpleDateFormat
@@ -27,6 +30,9 @@ class MainFragment : Fragment(), View.OnClickListener {
     lateinit var currentPhotoPath: String
     private lateinit var photoFile: File
     private val FILE_NAME = "photo.jpg"
+    private val AUTHORITY = BuildConfig.APPLICATION_ID + ".provider"
+//    private val output: File? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,36 +88,38 @@ class MainFragment : Fragment(), View.OnClickListener {
     }
 
     private fun dispatchTakePictureIntent() {
-//        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         val takePictureIntent = Intent("android.media.action.IMAGE_CAPTURE").also {
             photoFile = createImageFile()
         }
        photoFile?.also {
-           val photoURI = context?.let { FileProvider.getUriForFile(it, "com.example.testapplication.fileprovider", photoFile) }
+           val photoURI = context?.let { FileProvider.getUriForFile(
+               it,
+               "com.example.testapplication.fileprovider",
+               photoFile
+           ) }
            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+           activity?.setResult(RESULT_OK, takePictureIntent)
        }
         Log.d("logging", "photoFile is : $photoFile")
         Log.d("logging", "takePictureIntent is : $takePictureIntent")
-
     }
-
     private fun createImageFile(): File {
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-
-        val storageDirectory = context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val storageDirectory: File? = context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDirectory).apply {
             currentPhotoPath = absolutePath
         }
     }
 
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-                Log.d("logging", "intent is : $data")
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d("logging", "intent is : $data")
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+//            val uri = Uri.fromFile(output)
 
-
-//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            notifyMediaStoreScanner(photoFile)
+        }
 //            val takenImage = BitmapFactory.decodeFile(photoFile.absolutePath)
 //            val photoIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
 //            val f = File(photoFile.absolutePath)
@@ -121,21 +129,46 @@ class MainFragment : Fragment(), View.OnClickListener {
             // to render this "takenImage" into a specific image view:
             // imageview.setImageBitmap(takenImage)
 //        }
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun galleryAddPic() {
-        val f = File(currentPhotoPath) //set your picture's path
+//    private fun galleryAddPic() {
+//        val f = File(currentPhotoPath) //set your picture's path
+//        try {
+//            MediaStore.Images.Media.insertImage(
+//                activity?.contentResolver,
+//                f.absolutePath, f.name, null
+//            )
+//            activity?.sendBroadcast(
+//                Intent(
+//                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)
+//                )
+//            )
+//        } catch (e: FileNotFoundException) {
+//            e.printStackTrace()
+//        }
+//    }
+    private fun galleryAddPic(){
+        Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
+            val f = File(currentPhotoPath)
+            mediaScanIntent.data = Uri.fromFile(f)
+            activity?.sendBroadcast(mediaScanIntent)
+        }
+    }
+    fun notifyMediaStoreScanner(file: File) {
+        Log.d("logging", "notifyMediaStoreScanner: photoFile is: $file")
+
         try {
             MediaStore.Images.Media.insertImage(
-                activity?.contentResolver,
-                f.absolutePath, f.name, null
+                context?.getContentResolver(),
+                file.absolutePath, file.name, null
             )
-            activity?.sendBroadcast(
+            context?.sendBroadcast(
                 Intent(
-                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)
+                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)
                 )
             )
+            Log.d("logging", "notifyMediaStoreScanner: Intent is: ${Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file))}")
+
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         }
