@@ -14,20 +14,28 @@
         <action
             android:id="@+id/action_mainFragment_to_imageFragment"
             app:destination="@id/imageFragment"
-            app:enterAnim="@anim/slide_in" />
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
         <action
             android:id="@+id/action_mainFragment_to_videoFragment"
             app:destination="@id/videoFragment"
-            app:enterAnim="@anim/slide_in" />
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_mainFragment_to_apiFragment"
             app:destination="@id/apiFragment"
-            app:enterAnim="@anim/slide_in" />
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_mainFragment_to_recycler"
             app:destination="@id/recycler"
-            app:enterAnim="@anim/slide_in" />
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
     </fragment>
 
@@ -36,19 +44,35 @@
         android:id="@+id/imageFragment"
         android:name="com.example.testapplication.fragments.ImageFragment"
         android:label="fragment_image"
-        tools:layout="@layout/fragment_image" />
+        tools:layout="@layout/fragment_image" >
+        <action
+            android:id="@+id/action_imageFragment_to_mainFragment2"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/videoFragment"
         android:name="com.example.testapplication.fragments.VideoFragment"
         android:label="fragment_video"
-        tools:layout="@layout/fragment_video" />
+        tools:layout="@layout/fragment_video" >
+        <action
+            android:id="@+id/action_videoFragment_to_mainFragment2"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/apiFragment"
         android:name="com.example.testapplication.fragments.APIFragment"
-        android:label="apiFragment" />
+        android:label="apiFragment" >
+        <action
+            android:id="@+id/action_apiFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/recycler"
         android:name="com.example.testapplication.fragments.Recycler"
         android:label="fragment_recycler"
-        tools:layout="@layout/fragment_recycler" />
+        tools:layout="@layout/fragment_recycler" >
+        <action
+            android:id="@+id/action_recycler_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

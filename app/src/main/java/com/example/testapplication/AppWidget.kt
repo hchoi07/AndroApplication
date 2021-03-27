@@ -31,31 +31,28 @@ class AppWidget : AppWidgetProvider() {
                     PendingIntent.getActivity(context, 0, intent, 0)
                 }
 
-            // this launches the image fragment
-//            val pendingIntent2 = NavDeepLinkBuilder(context)
-//                .setComponentName(MainActivity::class.java)
-//                .setGraph(R.navigation.nav_graph)
-//                .setDestination(R.id.imageFragment)
-//                .createPendingIntent()
+//             this launches the image fragment
+            val pendingIntent2 = NavDeepLinkBuilder(context)
+                .setComponentName(MainActivity::class.java)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.imageFragment)
+                .createPendingIntent()
 
-            // this launches the video fragment
-//            val pendingIntent3 = NavDeepLinkBuilder(context)
-//                .setComponentName(MainActivity::class.java)
-//                .setGraph(R.navigation.nav_graph)
-//                .setDestination(R.id.videoFragment)
-//                .createPendingIntent()
-
-
+//             this launches the video fragment
+            val pendingIntent3 = NavDeepLinkBuilder(context)
+                .setComponentName(MainActivity::class.java)
+                .setGraph(R.navigation.nav_graph)
+                .setDestination(R.id.videoFragment)
+                .createPendingIntent()
 
             val views: RemoteViews = RemoteViews(
                 context.packageName,
                 R.layout.app_widget
             ).apply {
                 setOnClickPendingIntent(R.id.launch_btn, pendingIntent)
-//                setOnClickPendingIntent(R.id.open_image_btn, pendingIntent2)
-//                setOnClickPendingIntent(R.id.open_video_btn, pendingIntent3)
+                setOnClickPendingIntent(R.id.img_btn, pendingIntent2)
+                setOnClickPendingIntent(R.id.vid_btn, pendingIntent3)
 //                setOnClickPendingIntent(R.id.other_app_btn, pendingIntent4)
-
             }
 
             // Tell the AppWidgetManager to perform an update on the current app widget

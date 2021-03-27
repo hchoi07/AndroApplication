@@ -11,11 +11,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.testapplication.BuildConfig
+import com.example.testapplication.OnSwipeTouchListener
 import com.example.testapplication.R
 import java.io.File
 import java.io.FileNotFoundException
@@ -31,8 +33,6 @@ class MainFragment : Fragment(), View.OnClickListener {
     private lateinit var photoFile: File
     private val FILE_NAME = "photo.jpg"
     private val AUTHORITY = BuildConfig.APPLICATION_ID + ".provider"
-//    private val output: File? = null
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,15 +46,12 @@ class MainFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
+
         view.findViewById<Button>(R.id.image_btn).setOnClickListener(this)
         view.findViewById<Button>(R.id.video_btn).setOnClickListener(this)
         view.findViewById<Button>(R.id.otherApp_btn).setOnClickListener(this)
         view.findViewById<Button>(R.id.api_btn).setOnClickListener(this)
         view.findViewById<Button>(R.id.recyclerView_btn).setOnClickListener(this)
-        view.findViewById<Button>(R.id.camera_btn).setOnClickListener(this)
-
-
-
     }
 
     override fun onClick(v: View?) {
@@ -65,7 +62,6 @@ class MainFragment : Fragment(), View.OnClickListener {
             R.id.otherApp_btn -> openMap()
             R.id.api_btn -> navController!!.navigate(R.id.action_mainFragment_to_apiFragment)
             R.id.recyclerView_btn -> navController!!.navigate(R.id.action_mainFragment_to_recycler)
-            R.id.camera_btn -> dispatchTakePictureIntent()
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.testapplication.adapters
 
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,10 +47,12 @@ class ButtonAdapter(private val button_list: Button): RecyclerView.Adapter<Butto
         holder.itemtitle.text = list[position].TITLE
         holder.itembutton.text = list[position].BUTTON_TEXT
         holder.itembutton.setOnClickListener { v ->
-            Toast.makeText(
+            var toast = Toast.makeText(
                 v.context, list[position].DESCRIPTION,
-                Toast.LENGTH_LONG
+                Toast.LENGTH_SHORT
             ).show()
+
+
         }
     }
 

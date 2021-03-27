@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.testapplication.OnSwipeTouchListener
 import com.example.testapplication.R
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -57,18 +59,65 @@ class VideoFragment : Fragment() {
 
         videoView = view.findViewById<PlayerView>(R.id.player_view)
 
-        val mediaItem = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/leaves"))
+        // swipe implementation
 
-        Log.i("log", "media source is: " + mediaItem)
+
+        val mediaItem1 = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/leaves"))
+        val mediaItem2 = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/vid_2"))
+        val mediaItem3 = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/vid_3"))
+        val mediaItem4 = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/vid_4"))
+
+        Log.i("log", "media source is: " + mediaItem1)
         context?.let {
             simpleExoPlayer = SimpleExoPlayer.Builder(it).build()
             videoView.player = simpleExoPlayer
-            simpleExoPlayer.setMediaItem(mediaItem, false)
+            videoView.controllerHideOnTouch = true
+
+
+
+            simpleExoPlayer.addMediaItem(mediaItem1)
+            simpleExoPlayer.addMediaItem(mediaItem2)
+            simpleExoPlayer.addMediaItem(mediaItem3)
+            simpleExoPlayer.addMediaItem(mediaItem4)
+
             simpleExoPlayer.prepare()
             simpleExoPlayer.playWhenReady = true
             simpleExoPlayer.repeatMode = SimpleExoPlayer.REPEAT_MODE_ONE
         }
+
+        videoView.setOnTouchListener(object : OnSwipeTouchListener(context) {
+//            override fun onSwipeLeft() {
+//                super.onSwipeLeft()
+//                Toast.makeText(context, "Swipe Left gesture detected",
+//                    Toast.LENGTH_SHORT)
+//                    .show()
+//            }
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                Toast.makeText(
+                    context,
+                    "Swipe Right gesture detected",
+                    Toast.LENGTH_SHORT
+                ).show()
+                activity?.onBackPressed()
+            }
+            override fun onSwipeUp() {
+                super.onSwipeUp()
+//                Toast.makeText(context, "Swipe up gesture detected", Toast.LENGTH_SHORT)
+//                    .show()
+                simpleExoPlayer.next()
+            }
+
+            override fun onClick() {
+                super.onClick()
+                videoView.showController()
+            }
+        })
+
+
     }
+
+
 
     override fun onStart() {
         super.onStart()

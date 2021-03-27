@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.testapplication.Cat
 import com.example.testapplication.CatInterface
 import com.example.testapplication.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONException
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,7 +46,7 @@ class APIFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.refresh_btn).setOnClickListener(this)
+        view.findViewById<FloatingActionButton>(R.id.refresh_btn).setOnClickListener(this)
 //        makeRequest()
         getMethod()
 

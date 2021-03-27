@@ -4,29 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_fragment"
     tools:context=".fragments.MainFragment">
 
     <Button
         android:id="@+id/image_btn"
         android:layout_width="200dp"
         android:layout_height="46dp"
-        android:backgroundTint="#D0EDFA"
+        android:background="@drawable/menu_btn_background"
+        android:fontFamily="serif-monospace"
+        android:textColor="@color/tertiaryColor"
         android:text="Image"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/video_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/video_btn"
         android:layout_width="200dp"
         android:layout_height="46dp"
-        android:backgroundTint="#D0EDFA"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/menu_btn_background"
+        android:fontFamily="serif-monospace"
+        android:textStyle="bold"
         android:text="Video"
+        android:textColor="@color/tertiaryColor"
         app:layout_constraintBottom_toTopOf="@+id/otherApp_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_btn" />
 
@@ -34,11 +42,14 @@
         android:id="@+id/otherApp_btn"
         android:layout_width="200dp"
         android:layout_height="46dp"
-        android:backgroundTint="#D0EDFA"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/menu_btn_background"
+        android:fontFamily="serif-monospace"
+        android:textStyle="bold"
         android:text="Google Maps"
+        android:textColor="@color/secondaryColor"
         app:layout_constraintBottom_toTopOf="@+id/api_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/video_btn" />
 
@@ -46,11 +57,14 @@
         android:id="@+id/api_btn"
         android:layout_width="200dp"
         android:layout_height="46dp"
-        android:backgroundTint="#D0EDFA"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/menu_btn_background"
+        android:fontFamily="serif-monospace"
+        android:textStyle="bold"
         android:text="Cat API"
+        android:textColor="@color/secondaryColor"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/otherApp_btn" />
 
@@ -58,25 +72,16 @@
         android:id="@+id/recyclerView_btn"
         android:layout_width="200dp"
         android:layout_height="46dp"
-        android:backgroundTint="#D0EDFA"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/menu_btn_background"
+        android:fontFamily="serif-monospace"
+        android:textStyle="bold"
         android:text="Recycler View"
-        app:layout_constraintBottom_toTopOf="@+id/camera_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/api_btn" />
-
-    <Button
-        android:id="@+id/camera_btn"
-        android:layout_width="200dp"
-        android:layout_height="46dp"
-        android:backgroundTint="#D0EDFA"
-        android:text="Camera"
+        android:textColor="@color/secondaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/api_btn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
