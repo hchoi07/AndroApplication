@@ -38,11 +38,11 @@ class MainActivity : AppCompatActivity() {
 //            }
             override fun onSwipeRight() {
                 super.onSwipeRight()
-                Toast.makeText(
-                    this@MainActivity,
-                    "Swipe Right gesture detected",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    this@MainActivity,
+//                    "Swipe Right gesture detected",
+//                    Toast.LENGTH_SHORT
+//                ).show()
                 onBackPressed()
             }
         })

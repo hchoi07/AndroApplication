@@ -66,23 +66,26 @@ class VideoFragment : Fragment() {
         val mediaItem2 = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/vid_2"))
         val mediaItem3 = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/vid_3"))
         val mediaItem4 = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/vid_4"))
+        val mediaItem5 = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/vid_5"))
+        val mediaItem6 = MediaItem.fromUri(Uri.parse("android.resource://com.example.testapplication/raw/vid_6"))
+
 
         Log.i("log", "media source is: " + mediaItem1)
         context?.let {
             simpleExoPlayer = SimpleExoPlayer.Builder(it).build()
             videoView.player = simpleExoPlayer
-            videoView.controllerHideOnTouch = true
-
-
+//            videoView.controllerHideOnTouch = true
 
             simpleExoPlayer.addMediaItem(mediaItem1)
             simpleExoPlayer.addMediaItem(mediaItem2)
             simpleExoPlayer.addMediaItem(mediaItem3)
             simpleExoPlayer.addMediaItem(mediaItem4)
+            simpleExoPlayer.addMediaItem(mediaItem5)
+            simpleExoPlayer.addMediaItem(mediaItem6)
 
             simpleExoPlayer.prepare()
             simpleExoPlayer.playWhenReady = true
-            simpleExoPlayer.repeatMode = SimpleExoPlayer.REPEAT_MODE_ONE
+            simpleExoPlayer.repeatMode = SimpleExoPlayer.REPEAT_MODE_ALL
         }
 
         videoView.setOnTouchListener(object : OnSwipeTouchListener(context) {
@@ -94,11 +97,11 @@ class VideoFragment : Fragment() {
 //            }
             override fun onSwipeRight() {
                 super.onSwipeRight()
-                Toast.makeText(
-                    context,
-                    "Swipe Right gesture detected",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    context,
+//                    "Swipe Right gesture detected",
+//                    Toast.LENGTH_SHORT
+//                ).show()
                 activity?.onBackPressed()
             }
             override fun onSwipeUp() {
@@ -108,9 +111,19 @@ class VideoFragment : Fragment() {
                 simpleExoPlayer.next()
             }
 
+            override fun onSwipeDown() {
+                super.onSwipeDown()
+                simpleExoPlayer.previous()
+            }
+
             override fun onClick() {
                 super.onClick()
-                videoView.showController()
+                if (videoView.isControllerVisible == false) {
+                    videoView.showController()
+                } else {
+                    videoView.hideController()
+
+                }
             }
         })
 

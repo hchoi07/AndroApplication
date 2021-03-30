@@ -51,11 +51,11 @@ class Recycler : Fragment() {
 //            }
             override fun onSwipeRight() {
                 super.onSwipeRight()
-                Toast.makeText(
-                    context,
-                    "Swipe Right gesture detected",
-                    Toast.LENGTH_SHORT
-                ).show()
+//                Toast.makeText(
+//                    context,
+//                    "Swipe Right gesture detected",
+//                    Toast.LENGTH_SHORT
+//                ).show()
                 activity?.onBackPressed()
             }
 //            override fun onSwipeUp() {

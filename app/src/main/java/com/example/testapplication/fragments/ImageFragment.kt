@@ -35,7 +35,7 @@ class ImageFragment : Fragment(), View.OnClickListener{
     private lateinit var photoFile: File
     private val FILE_NAME = "photo.jpg"
     var frgTakenImage : Bitmap? = null
-    var matrix: Matrix? = null
+//    var matrix: Matrix? = null
 //    var takenImage: Bitmap? = null
 
     override fun onCreateView(

@@ -99,11 +99,11 @@ class APIFragment : Fragment(), View.OnClickListener {
         val response = service.getCats()
         response?.enqueue(object: Callback<Cat?> {
             override fun onResponse(call: Call<Cat?>, response: Response<Cat?>) {
-                Log.d("logging", "response is : ${response.body()}")
+//                Log.d("logging", "response is : ${response.body()}")
                 response.body()?.let { makeRequest2(it.file) }
             }
             override fun onFailure(call: Call<Cat?>, t: Throwable) {
-                Log.d("logging", "failed!!")
+//                Log.d("logging", "failed!!")
             }
         })
     }

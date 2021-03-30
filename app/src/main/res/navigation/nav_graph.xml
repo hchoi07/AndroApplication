@@ -44,35 +44,19 @@
         android:id="@+id/imageFragment"
         android:name="com.example.testapplication.fragments.ImageFragment"
         android:label="fragment_image"
-        tools:layout="@layout/fragment_image" >
-        <action
-            android:id="@+id/action_imageFragment_to_mainFragment2"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_image" />
     <fragment
         android:id="@+id/videoFragment"
         android:name="com.example.testapplication.fragments.VideoFragment"
         android:label="fragment_video"
-        tools:layout="@layout/fragment_video" >
-        <action
-            android:id="@+id/action_videoFragment_to_mainFragment2"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_video" />
     <fragment
         android:id="@+id/apiFragment"
         android:name="com.example.testapplication.fragments.APIFragment"
-        android:label="apiFragment" >
-        <action
-            android:id="@+id/action_apiFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        android:label="apiFragment" />
     <fragment
         android:id="@+id/recycler"
         android:name="com.example.testapplication.fragments.Recycler"
         android:label="fragment_recycler"
-        tools:layout="@layout/fragment_recycler" >
-        <action
-            android:id="@+id/action_recycler_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_recycler" />
 </navigation>
