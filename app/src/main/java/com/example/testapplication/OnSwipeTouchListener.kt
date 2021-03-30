@@ -1,6 +1,7 @@
 package com.example.testapplication
 
 import android.content.Context
+import android.util.Log
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
@@ -32,11 +33,15 @@ internal open class OnSwipeTouchListener(c: Context?) :
             super.onLongPress(e)
         }
         override fun onFling(
-            e1: MotionEvent,
-            e2: MotionEvent,
+            e1: MotionEvent?,
+            e2: MotionEvent?,
             velocityX: Float,
             velocityY: Float
         ): Boolean {
+            if (e1 == null || e2 == null) {
+                Log.d("logging", "onFling at OnSwipeTouchListener: e1 == null || e2 == null triggered")
+                return false
+            }
             try {
                 val diffY = e2.y - e1.y
                 val diffX = e2.x - e1.x
